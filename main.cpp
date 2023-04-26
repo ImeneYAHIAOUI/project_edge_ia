@@ -1,4 +1,4 @@
-#include <algorithm>
+/*#include <algorithm>
 #include <array>
 #include <cstring>
 #include <fstream>
@@ -80,3 +80,4 @@ int main(int argc, const char *argv[]) {
 
 	return 0;
 }
+*/
