@@ -43,6 +43,16 @@ Pour les couches de convolution, nous avons diminué les tailles des kernels et 
 
 ## Architecture du processing des données par le capteur
 
+On récupere les données de l’audio avec le micro du capteur et on les stocke dans un tableau inputs. on passe ce tableau dans la fonction "cnn" qui est le modèle que nous avons entrainé. Cette fonction nous retourne un tableau outputs qui contient les probabilités que l’audio appartient à chaque classe. On prend la classe qui a la plus grande probabilité et on l’affiche dans le moniteur série.
+
+### DMA
+
+Le controlleur DMA est un péréphérique qui permet de transférer des données entre la mémoire et le microcontrolleur avec une utilisation minimale du CPU. le DMA est répartie en canaux, chaque canal peut être configuré pour transférer des données entre une source et une destination spécifique. Dans notre cas, nous avons utilisé le canal 1 pour transférer les données du micro vers la mémoire.
+
+### ADC
+
+Le convertisseur analogique-numérique (ADC) est un péréphérique qui permet de convertir un signal analogique en un signal numérique. Dans notre cas, nous avons utilisé l’ADC pour convertir le signal analogique du micro en un signal numérique.
+
 ## Résultats obtenus
 
 Dans un premier temps, Nous avons utilisé seulement les premiers 10 secondes de chaque enregistrement pour l’apprentissage et le test. Cette stratégie bous faisait perdre beaucoup d’informations et nous donnais une accuracy de 44%.
