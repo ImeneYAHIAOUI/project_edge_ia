@@ -16,9 +16,9 @@ Cette api nous a permis de récupérer des enregistrements de tailles différent
 
 Une fois que nos données sont prêts, on fait en sort que toutes les classes ont le même nombre d’enregistrement et on met aléatoirement les noms de 10% des enregistrements de chaque classe dans le fichier testing_list.txt et 10% dans validatio_list.txt. on aura donc un modèle d’apprentissage de 90% train 10% test 10% validation.
 
-On charge après les données des enregistrements dans des tableaux train et test. est on entraine notre model cnn inspiré du modèle M5 et modifié pour qu’il entre dans la carte. 
+On charge après les données des enregistrements dans des tableaux train et test. est on entraine notre model cnn inspiré du modèle M5 et modifié pour qu’il entre dans la carte.
 
-On génère après un code c pour le modèle avec des points fixes représentés sur 16 bits, On le compile et évalue une petite base de données afin de vérifiés si les résultats obtenus avec le modèle généré en c sont les même. 
+On génère après un code c pour le modèle avec des points fixes représentés sur 16 bits, On le compile et évalue une petite base de données afin de vérifiés si les résultats obtenus avec le modèle généré en c sont les même.
 
 En fin, on déploie notre modèle sur la carte en lançant le code .ino et on teste notre ia embarquée en jouant des audios et en observant les résultats sur le “Moniteur série” d’arduino.
 
@@ -31,11 +31,11 @@ Nous avons pris le modèle M5 vu en lab5, et nous avons changé les paramètres 
 Pour les couches de convolution, nous avons diminué les tailles des kernels et les nombres de filtres, et nous avons augmenté le nombre de strides pour la premiere couche de convolution
 
 | conv layer | filters | kernel size | strides |
-| --- | --- | --- | --- |
-| first | 8 | 30 | 10 |
-| second | 8 | 3 | default |
-| third | 8 | 3 | default |
-| fourth | 32 | 3 | default |
+| ---------- | ------- | ----------- | ------- |
+| first      | 8       | 30          | 10      |
+| second     | 8       | 3           | default |
+| third      | 8       | 3           | default |
+| fourth     | 32      | 3           | default |
 
 # Résultats obtenus
 
@@ -47,17 +47,17 @@ En faisant un premier essaie avec toutes les classe, Nous avons remarqué que le
 
 En écoutant quelques enregistrements, on peut remarquer qu’ils ont un chant similaire
 
-![Untitled](Rendu%20Projet%20microIA%204654df37914c493f8412a7a83eae0ef8/Untitled.png)
+![Untitled](images/Untitled.png)
 
 Nous avant donc fait un autre essaie sans la classe du bruant jaune et l’accuracy est monté à 70%.
 
-![Untitled](Rendu%20Projet%20microIA%204654df37914c493f8412a7a83eae0ef8/Untitled%201.png)
+![Untitled](images/Untitled%201.png)
 
-En effet, un des difficultés de faire apprendre une ia à reconnaitre les chants des oiseaux est la similarité de chants de plusieurs espèces. 
+En effet, un des difficultés de faire apprendre une ia à reconnaitre les chants des oiseaux est la similarité de chants de plusieurs espèces.
 
 Une autre difficulté est le fait que les audios sont souvent “polluée” par du bruit de font ou de chants d’autres espèces. Il y a aussi le fait que les oiseaux ont souvent plusieurs chants différents ( le “si yut-tee yut-tee” joyeux, le “te tuuiii" gazouillant, le “yun-yun-yun” alarmant, etc).
 
-Le dernier problème que nous avons rencontré est le déséquilibre du nombre d’enregistrements entre les espèces. Cela est du au fait que certaines sont plus populaires que d’autres, et certaines sont plus rare  que d’autre. Pour donner un exemple, nous avons décidé de ne pas inclure le  Faucon crécerelle dans notre base de données car nous avons trouvé seulement une soixantaine d’enregistrements de chants pour cette espèce.
+Le dernier problème que nous avons rencontré est le déséquilibre du nombre d’enregistrements entre les espèces. Cela est du au fait que certaines sont plus populaires que d’autres, et certaines sont plus rare que d’autre. Pour donner un exemple, nous avons décidé de ne pas inclure le Faucon crécerelle dans notre base de données car nous avons trouvé seulement une soixantaine d’enregistrements de chants pour cette espèce.
 
 Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de nos attentes. Toutefois, compte tenu du nombre limité de filtres que nous avons utilisés dans les couches de convolution et la baisse de la frequence et des secondes dans l’entrée pour pouvoir déployer le modèle sur la carte, cette performance reste tout à fait satisfaisante.
 
