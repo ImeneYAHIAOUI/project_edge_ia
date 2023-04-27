@@ -14,7 +14,28 @@ Pour cela, Nous avons utilisé la librairie python [xeno-canto](https://pypi.org
 
 Cette api nous a permis de récupérer des enregistrements de tailles différentes en format mp3. Nous avons donc utilisé ffmpeg pour découper ses derniers en segments de 10 secondes et les convertir en wav afin qu’on puisse extraire les données avec la librairie python wave.
 
-Une fois que nos données sont pret
+Une fois que nos données sont prêts, on fait en sort que toutes les classes ont le même nombre d’enregistrement et on met aléatoirement les noms de 10% des enregistrements de chaque classe dans le fichier testing_list.txt et 10% dans validatio_list.txt. on aura donc un modèle d’apprentissage de 90% train 10% test 10% validation.
+
+On charge après les données des enregistrements dans des tableaux train et test. est on entraine notre model cnn inspiré du modèle M5 et modifié pour qu’il entre dans la carte. 
+
+On génère après un code c pour le modèle avec des points fixes représentés sur 16 bits, On le compile et évalue une petite base de données afin de vérifiés si les résultats obtenus avec le modèle généré en c sont les même. 
+
+En fin, on déploie notre modèle sur la carte en lançant le code .ino et on teste notre ia embarquée en jouant des audios et en observant les résultats sur le “Moniteur série” d’arduino.
+
+# Modèle CNN
+
+Afin de pouvoir déployer notre modèle sur la carte, il était crucial de choisir un modèle de réseau de neurones convolutifs (CNN) qui n'utilise pas trop de ressources, notamment en RAM et en ROM. En effet, les modèles de CNN peuvent être très lourds et complexes, ce qui les rend difficiles à intégrer sur des systèmes embarqués ayant des contraintes de ressources. Nous avons donc pris soin de sélectionner un modèle adapté à ces contraintes afin de pouvoir obtenir des performances raisonnables tout en restant dans les limites de la carte.
+
+Nous avons pris le modèle M5 vu en lab5, et nous avons changé les paramètres de nos données pour que l’input soit de dimension (10000,2). Donc nos données ont été redimensionnées à 10khz et 2 secondes.
+
+Pour les couches de convolution, nous avons diminué les tailles des kernels et les nombres de filtres, et nous avons augmenté le nombre de strides pour la premiere couche de convolution
+
+| conv layer | filters | kernel size | strides |
+| --- | --- | --- | --- |
+| first | 8 | 30 | 10 |
+| second | 8 | 3 |  |
+| third | 8 | 3 |  |
+| fourth | 32 | 3 |  |
 
 # Résultats obtenus
 
