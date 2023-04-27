@@ -11,8 +11,8 @@
 #include "number.h"
 #endif
 
-#define INPUT_CHANNELS      10
-#define INPUT_SAMPLES       8000
+#define INPUT_CHANNELS      2
+#define INPUT_SAMPLES       10000
 #define CONV_FILTERS        8
 #define CONV_KERNEL_SIZE    30
 #define CONV_STRIDE         10

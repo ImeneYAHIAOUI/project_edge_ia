@@ -12,7 +12,7 @@
 #endif
 
 #define INPUT_CHANNELS      8
-#define INPUT_SAMPLES       19
+#define INPUT_SAMPLES       24
 #define CONV_FILTERS        16
 #define CONV_KERNEL_SIZE    3
 #define CONV_STRIDE         1

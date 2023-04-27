@@ -12,7 +12,7 @@
 #endif
 
 #define INPUT_CHANNELS  8
-#define INPUT_SAMPLES   798
+#define INPUT_SAMPLES   998
 #define POOL_SIZE       10
 #define POOL_STRIDE     10
 #define POOL_PAD        0 // Unsupported
