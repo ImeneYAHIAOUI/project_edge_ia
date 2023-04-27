@@ -77,17 +77,27 @@ Le dernier problème que nous avons rencontré est le déséquilibre du nombre d
 
 Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de nos attentes. Toutefois, compte tenu du nombre limité de filtres que nous avons utilisés dans les couches de convolution et la baisse de la frequence et des secondes dans l’entrée pour pouvoir déployer le modèle sur la carte, cette performance reste tout à fait satisfaisante.
 
-### Empreinte mémoire
+### Analyse des performances pour le modèle avec toutes les classes
 
-Notre modèle utilise 46088 octets, soit 4% de l’espace de stokage de la carte .
+|                    | unit of measurment | value |
+| ------------------ | ------------------ | ----- |
+| ROM Memory         | octets             | 46088 |
+| Mem Rom            | octets             | 46094 |
+| Calculated latency | ms                 | 50    |
 
-### Latence
+### Estimation de la consomatation d'énergie
 
-L’entrainement du modèle ne prends pas plus qu’environ trente secondes puisqu’on utilise un nombre réduit de paramètres d’entrés, de filtres et de kernels .
+Consomation en mode active : 62 mW
+on suppoose que la carte recupere les données pendant tous les 2 secondes et on les envoie au serveur pour les traiter. Donc la consomation moyenne par periode : L*P/T = 62*0.02/2.= 0.62 mW
 
-Dés qu’on joue une partie “reconnaissable” d’une audio de chants, on vois directement le label de la classe reconnue apparaitre sur la console du moniteur série, la réponse de la carte de la carte est donc quasiment immédiate.
+Energie de la batterie : 3700 mWh
 
-### Consommation énergétique
+Temps de vie de la batterie avec le sleep mode : 3700/0.62 = 5967.74 heures = 248 jours
+
+Temps de vie de la batterie sans le sleep mode : 3700/62 = 59.67 heures = 2.48 jours
+
+Temps de vie de la batterie en cas se communication sans fil : si on suppose que la carte consomme 100 mW tous les 50 ms pendant la connectio, la consomation moyenne par periode : L*P/T = 100*0.05 + 62\*0.02/2 = 5.1 mW
+donc le temps de vie de la batterie : 3700/5.1 = 725.49 heures = 30.22 jours.
 
 ## Conclusion
 
