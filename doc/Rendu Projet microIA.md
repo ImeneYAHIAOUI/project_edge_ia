@@ -1,4 +1,4 @@
-# Rendu Projet microIA
+# Rendu Projet microIA (Imene Yahiaoui \_ Sourour Gazzeh)
 
 ## Description du projet
 
