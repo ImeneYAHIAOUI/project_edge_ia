@@ -1,10 +1,10 @@
 # Rendu Projet microIA
 
-# Description du projet
+## Description du projet
 
 Notre projet vise à identifier les chants d'oiseaux à partir de fichiers de test en utilisant une carte Nucleo-64 STM32L476 qui possède une faible quantité de RAM et de stockage (1 MB Flash, 128 KB SRAM) pour jouer les enregistrements, et à afficher les résultats dans la console. Nous avons construit notre base de données en récupérant des enregistrement grâce à l’API du site Xeno-canto, présentée pendant le cours, pour atteindre cet objectif.
 
-# Description du flux du travail
+## Description du flux du travail
 
 Nous avons choisi d’avoir quatre classes dans notre base de données pour quatre espèces (Bruant jaune, Bruant zizi, Coucou gris et Gobemouche gris)
 
@@ -22,11 +22,11 @@ On génère après un code c pour le modèle avec des points fixes représentés
 
 En fin, on déploie notre modèle sur la carte en lançant le code .ino et on teste notre ia embarquée en jouant des audios et en observant les résultats sur le “Moniteur série” d’arduino.
 
-## Schéma illustratif du workflow
+### Schéma illustratif du workflow
 
 ![workflow](images/workflow.png)
 
-# Modèle CNN
+## Modèle CNN
 
 Afin de pouvoir déployer notre modèle sur la carte, il était crucial de choisir un modèle de réseau de neurones convolutifs (CNN) qui n'utilise pas trop de ressources, notamment en RAM et en ROM. En effet, les modèles de CNN peuvent être très lourds et complexes, ce qui les rend difficiles à intégrer sur des systèmes embarqués ayant des contraintes de ressources. Nous avons donc pris soin de sélectionner un modèle adapté à ces contraintes afin de pouvoir obtenir des performances raisonnables tout en restant dans les limites de la carte.
 
@@ -41,7 +41,9 @@ Pour les couches de convolution, nous avons diminué les tailles des kernels et 
 | third      | 8       | 3           | default |
 | fourth     | 32      | 3           | default |
 
-# Résultats obtenus
+## Architecture du processing des données par le capteur
+
+## Résultats obtenus
 
 Dans un premier temps, Nous avons utilisé seulement les premiers 10 secondes de chaque enregistrement pour l’apprentissage et le test. Cette stratégie bous faisait perdre beaucoup d’informations et nous donnais une accuracy de 44%.
 
@@ -65,18 +67,18 @@ Le dernier problème que nous avons rencontré est le déséquilibre du nombre d
 
 Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de nos attentes. Toutefois, compte tenu du nombre limité de filtres que nous avons utilisés dans les couches de convolution et la baisse de la frequence et des secondes dans l’entrée pour pouvoir déployer le modèle sur la carte, cette performance reste tout à fait satisfaisante.
 
-## Empreinte mémoire
+### Empreinte mémoire
 
 Notre modèle utilise 46088 octets, soit 4% de l’espace de stokage de la carte .
 
-## Latence
+### Latence
 
 L’entrainement du modèle ne prends pas plus qu’environ trente secondes puisqu’on utilise un nombre réduit de paramètres d’entrés, de filtres et de kernels .
 
 Dés qu’on joue une partie “reconnaissable” d’une audio de chants, on vois directement le label de la classe reconnue apparaitre sur la console du moniteur série, la réponse de la carte de la carte est donc quasiment immédiate.
 
-## Consommation énergétique
+### Consommation énergétique
 
-# Conclusion
+## Conclusion
 
 Pour conclure, notre projet a été une réussite et nous a permis d'acquérir de nouvelles compétences en traitement de données. Toutefois, pour améliorer encore davantage la précision de notre modèle d'identification des chants d'oiseaux, il serait intéressant de mettre en place un mécanisme de seuil de détection de niveau sonore. Ce dernier permettrait de détecter les parties du signal audio inutiles, telles que les silences entre les enregistrements ou les bruits de fond, et de les supprimer automatiquement. En éliminant ces parties superflues du signal, nous pourrions optimiser notre modèle et ainsi améliorer l'identification des chants d'oiseaux.
