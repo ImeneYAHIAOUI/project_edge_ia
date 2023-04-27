@@ -22,6 +22,10 @@ On génère après un code c pour le modèle avec des points fixes représentés
 
 En fin, on déploie notre modèle sur la carte en lançant le code .ino et on teste notre ia embarquée en jouant des audios et en observant les résultats sur le “Moniteur série” d’arduino.
 
+## Schéma illustratif du workflow
+
+![workflow](images/workflow.png)
+
 # Modèle CNN
 
 Afin de pouvoir déployer notre modèle sur la carte, il était crucial de choisir un modèle de réseau de neurones convolutifs (CNN) qui n'utilise pas trop de ressources, notamment en RAM et en ROM. En effet, les modèles de CNN peuvent être très lourds et complexes, ce qui les rend difficiles à intégrer sur des systèmes embarqués ayant des contraintes de ressources. Nous avons donc pris soin de sélectionner un modèle adapté à ces contraintes afin de pouvoir obtenir des performances raisonnables tout en restant dans les limites de la carte.
@@ -47,11 +51,11 @@ En faisant un premier essaie avec toutes les classe, Nous avons remarqué que le
 
 En écoutant quelques enregistrements, on peut remarquer qu’ils ont un chant similaire
 
-![Untitled](images/Untitled.png)
+![ConfusionMatrix1](images/ConfusionMatrix1.png)
 
 Nous avant donc fait un autre essaie sans la classe du bruant jaune et l’accuracy est monté à 70%.
 
-![Untitled](images/Untitled%201.png)
+![ConfusionMatrix2](images/ConfusionMatrix2.png)
 
 En effet, un des difficultés de faire apprendre une ia à reconnaitre les chants des oiseaux est la similarité de chants de plusieurs espèces.
 
