@@ -97,7 +97,7 @@ Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de no
 
 ### Estimation de la consomatation d'énergie
 
-Consomation en mode active : 62 mW
+On suppose que la consomation en mode active est de 62 mW
 
 On suppoose que la carte recupere les données pendant tous les 2 secondes et on les envoie au serveur pour les traiter.
 
