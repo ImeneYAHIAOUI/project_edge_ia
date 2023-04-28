@@ -73,9 +73,17 @@ Nous avant donc fait un autre essaie sans la classe du bruant jaune et l’accur
 
 En effet, un des difficultés de faire apprendre une ia à reconnaitre les chants des oiseaux est la similarité de chants de plusieurs espèces.
 
-Une autre difficulté est le fait que les audios sont souvent “pollués” par du bruit de font ou des chants d’autres espèces. Il y a aussi le fait que les oiseaux ont souvent plusieurs types de  chants différents ( le “si yut-tee yut-tee” joyeux, le “te tuuiii" gazouillant, le “yun-yun-yun” alarmant, etc).
+Une autre difficulté est le fait que les audios sont souvent “pollués” par du bruit de font ou des chants d’autres espèces. Il y a aussi le fait que les oiseaux ont souvent plusieurs types de chants différents ( le “si yut-tee yut-tee” joyeux, le “te tuuiii" gazouillant, le “yun-yun-yun” alarmant, etc).
 
 Le dernier problème que nous avons rencontré est le déséquilibre du nombre d’enregistrements entre les espèces. Cela est du au fait que certaines sont plus populaires que d’autres, et certaines sont plus rare que d’autre. Pour donner un exemple, nous avons décidé de ne pas inclure le Faucon crécerelle dans notre base de données car nous avons trouvé seulement une soixantaine d’enregistrements de chants pour cette espèce.
+
+Le meilleur résultat que nous avons obtenu est une accuracy de 80% pour le modèle sans la classe du bruant jaune en ayant un input de (10000, 10) qui concervait le plus d'informations.
+
+![BestModel](images/bestModel.png)
+
+![BestResult](images/best_result.png)
+
+Mais malheureusement même en diminuant le nombre de filtres et la taille des kernels et en augmentant le nombre des strides, le modèle restait trop lourd pour être déployé sur la carte.
 
 Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de nos attentes. Toutefois, compte tenu du nombre limité de filtres que nous avons utilisés dans les couches de convolution et la baisse de la frequence et des secondes dans l’entrée pour pouvoir déployer le modèle sur la carte, cette performance reste tout à fait satisfaisante.
 
