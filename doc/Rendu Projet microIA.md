@@ -57,13 +57,13 @@ Le convertisseur analogique-numérique (ADC) est un péréphérique qui permet d
 
 ## Résultats obtenus
 
-Dans un premier temps, Nous avons utilisé seulement les premiers 10 secondes de chaque enregistrement pour l’apprentissage et le test. Cette stratégie bous faisait perdre beaucoup d’informations et nous donnais une accuracy de 44%.
+Dans un premier temps, Nous avons utilisé seulement les premiers 10 secondes de chaque enregistrement pour l’apprentissage et le test. Cette stratégie nous faisait perdre beaucoup d’informations et nous donnait une accuracy de 44%.
 
-Cependant, après avoir utilisé le logiciel ffmpeg pour découper chaque audio en segments de 10 secondes et en utiliser la totalité, nous avons observé une amélioration significative de l'accuracy, qui est passée à 60%. Cette modification a permis d'inclure une quantité de données plus importante dans l'apprentissage du modèle, ce qui a contribué à améliorer ses performances.
+Cependant, après avoir utilisé le logiciel ffmpeg pour découper chaque audio en segments de 10 secondes et en utilisant la totalité, nous avons observé une amélioration significative de l'accuracy, qui est passée à 60%. Cette modification a permis d'inclure une quantité de données plus importante dans l'apprentissage du modèle, ce qui a contribué à améliorer ses performances.
 
 En faisant un premier essaie avec toutes les classe, Nous avons remarqué que le model confondait le plus le bruant jaune avec le bruant zizi.
 
-En écoutant quelques enregistrements, on peut remarquer qu’ils ont un chant similaire
+En écoutant quelques enregistrements, on peut remarquer qu’ils ont un chant trés similaire
 
 ![ConfusionMatrix1](images/ConfusionMatrix1.png)
 
@@ -73,7 +73,7 @@ Nous avant donc fait un autre essaie sans la classe du bruant jaune et l’accur
 
 En effet, un des difficultés de faire apprendre une ia à reconnaitre les chants des oiseaux est la similarité de chants de plusieurs espèces.
 
-Une autre difficulté est le fait que les audios sont souvent “polluée” par du bruit de font ou de chants d’autres espèces. Il y a aussi le fait que les oiseaux ont souvent plusieurs chants différents ( le “si yut-tee yut-tee” joyeux, le “te tuuiii" gazouillant, le “yun-yun-yun” alarmant, etc).
+Une autre difficulté est le fait que les audios sont souvent “pollués” par du bruit de font ou des chants d’autres espèces. Il y a aussi le fait que les oiseaux ont souvent plusieurs types de  chants différents ( le “si yut-tee yut-tee” joyeux, le “te tuuiii" gazouillant, le “yun-yun-yun” alarmant, etc).
 
 Le dernier problème que nous avons rencontré est le déséquilibre du nombre d’enregistrements entre les espèces. Cela est du au fait que certaines sont plus populaires que d’autres, et certaines sont plus rare que d’autre. Pour donner un exemple, nous avons décidé de ne pas inclure le Faucon crécerelle dans notre base de données car nous avons trouvé seulement une soixantaine d’enregistrements de chants pour cette espèce.
 
