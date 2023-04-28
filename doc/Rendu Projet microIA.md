@@ -90,7 +90,10 @@ Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de no
 ### Estimation de la consomatation d'énergie
 
 Consomation en mode active : 62 mW
-on suppoose que la carte recupere les données pendant tous les 2 secondes et on les envoie au serveur pour les traiter. Donc la consomation moyenne par periode : L\*P/T = 62\*0.1/2.= 3.1 mW
+
+On suppoose que la carte recupere les données pendant tous les 2 secondes et on les envoie au serveur pour les traiter.
+
+Donc la consomation moyenne par periode : L\*P/T = 62\*0.1/2.= 3.1 mW
 
 Energie de la batterie : 3700 mWh
 
@@ -98,8 +101,9 @@ Temps de vie de la batterie avec le sleep mode : 3700/3.1 = 1193.55 heures = 49.
 
 Temps de vie de la batterie sans le sleep mode : 3700/62 = 59.67 heures = 2.48 jours
 
-Temps de vie de la batterie en cas se communication sans fil : si on suppose que la carte consomme 100 mW tous les 50 ms pendant la connectio, la consomation moyenne par periode : L\*P/T = 100\*0.05 + 62\*0.1/2 = 5.6 mW
-donc le temps de vie de la batterie : 3700/5.1 = 660.71 heures = 27.53 jours.
+Temps de vie de la batterie en cas se communication sans fil : si on suppose que la carte consomme 100 mW tous les 50 ms pendant la connectio, la consomation moyenne par periode : L\*P/T = 100\*0.05 + 62\*0.1/2 = 5.6 mW.
+
+Donc le temps de vie de la batterie : 3700/5.1 = 660.71 heures = 27.53 jours.
 
 ## Conclusion
 
