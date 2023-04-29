@@ -2,7 +2,7 @@
 
 ## Description du projet
 
-Notre projet vise à identifier les chants d'oiseaux à partir de fichiers de test en utilisant une carte Nucleo-64 STM32L476 qui possède une faible quantité de RAM et de stockage (1 MB Flash, 128 KB SRAM) pour jouer les enregistrements, et à afficher les résultats dans la console. Nous avons construit notre base de données en récupérant des enregistrement grâce à l’API du site Xeno-canto, présentée pendant le cours, pour atteindre cet objectif.
+Notre projet vise à identifier les chants des oiseaux à partir de fichiers de test en utilisant une carte Nucleo-64 STM32L476 qui possède une faible quantité de RAM et de stockage (1 MB Flash, 128 KB SRAM) pour jouer les enregistrements et à afficher les résultats dans la console du moniteur série. Nous avons construit notre base de données en récupérant des enregistrement grâce à l’API du site Xeno-canto présentée pendant le cours pour atteindre cet objectif.
 
 ## Description du flux du travail
 
@@ -10,13 +10,13 @@ Nous avons choisi d’avoir quatre classes dans notre base de données pour quat
 
 Nous avons récupéré tous les enregistrements de chants de qualité A et B pour les toutes les espèces et les chants de qualité C pour le Gobemouche gris car il n’a pas autant d’enregistrements de bonne qualité que les autres espèces.
 
-Pour cela, Nous avons utilisé la librairie python [xeno-canto](https://pypi.org/project/xeno-canto/) qui est un wrapper d’api désigner afin d’aider les utilisateurs de récupérer les données souhaitées de xeno-canto.org.
+Pour cela, Nous avons utilisé la librairie python [xeno-canto](https://pypi.org/project/xeno-canto/) qui est un wrapper d’api créé afin d’aider les utilisateurs de récupérer les données souhaitées de xeno-canto.org.
 
 Cette api nous a permis de récupérer des enregistrements de tailles différentes en format mp3. Nous avons donc utilisé ffmpeg pour découper ses derniers en segments de 10 secondes et les convertir en wav afin qu’on puisse extraire les données avec la librairie python wave.
 
-Une fois que nos données sont prêts, on fait en sort que toutes les classes ont le même nombre d’enregistrement et on met aléatoirement les noms de 10% des enregistrements de chaque classe dans le fichier testing_list.txt et 10% dans validatio_list.txt. on aura donc un modèle d’apprentissage de 90% train 10% test 10% validation.
+Une fois que nos données sont prêtes, nous avons fait en sort que toutes les classes ont le même nombre d’enregistrement et nous avons mis aléatoirement les noms de 10% des enregistrements de chaque classe dans le fichier testing_list.txt et 10% dans validatio_list.txt. nous avons créé donc un modèle d’apprentissage de 90% train 10% test 10% validation.
 
-On charge après les données des enregistrements dans des tableaux train et test. est on entraine notre model cnn inspiré du modèle M5 et modifié pour qu’il entre dans la carte.
+Les données des enregistrements sont chargées dans des tableaux train et test, est utilisées pour entraîner notre model cnn inspiré du modèle M5 et modifié pour qu’il entre dans la carte.
 
 On génère après un code c pour le modèle avec des points fixes représentés sur 16 bits, On le compile et évalue une petite base de données afin de vérifiés si les résultats obtenus avec le modèle généré en c sont les même.
 
@@ -45,7 +45,7 @@ Pour les couches de convolution, nous avons diminué les tailles des kernels et 
 
 ## Architecture du processing des données par le capteur
 
-On récupere les données de l’audio avec le micro du capteur et on les stocke dans un tableau inputs. on passe ce tableau dans la fonction "cnn" qui est le modèle que nous avons entrainé. Cette fonction nous retourne un tableau outputs qui contient les probabilités que l’audio appartient à chaque classe. On prend la classe qui a la plus grande probabilité et on l’affiche dans le moniteur série.
+On récupere les données de l’audio avec le micro du capteur et on les stocke dans un tableau inputs. On passe ce tableau dans la fonction "cnn" qui est le modèle que nous avons entrainé. Cette fonction nous retourne un tableau outputs qui contient les probabilités que l’audio appartient à chaque classe. On prend la classe qui a la plus grande probabilité et on l’affiche dans le moniteur série.
 
 ### DMA
 
@@ -67,7 +67,7 @@ En écoutant quelques enregistrements, on peut remarquer qu’ils ont un chant t
 
 ![ConfusionMatrix1](images/ConfusionMatrix1.png)
 
-Nous avant donc fait un autre essaie sans la classe du bruant jaune et l’accuracy est monté à 70%.
+Nous avant donc fait un autre essaie sans la classe du Bruant jaune et l’accuracy est monté à 70%.
 
 ![ConfusionMatrix2](images/ConfusionMatrix2.png)
 
@@ -77,7 +77,7 @@ Une autre difficulté est le fait que les audios sont souvent “pollués” par
 
 Le dernier problème que nous avons rencontré est le déséquilibre du nombre d’enregistrements entre les espèces. Cela est du au fait que certaines sont plus populaires que d’autres, et certaines sont plus rare que d’autre. Pour donner un exemple, nous avons décidé de ne pas inclure le Faucon crécerelle dans notre base de données car nous avons trouvé seulement une soixantaine d’enregistrements de chants pour cette espèce.
 
-Le meilleur résultat que nous avons obtenu est une accuracy de 80% pour le modèle sans la classe du bruant jaune en ayant un input de (10000, 10) qui concervait le plus d'informations.
+Le meilleur résultat que nous avons obtenu sans la classe du Bruant jaune a une accuracy de 80% en ayant un input de (10000, 10) qui concervait le plus d'informations.
 
 ![BestModel](images/bestModel.png)
 
@@ -85,7 +85,7 @@ Le meilleur résultat que nous avons obtenu est une accuracy de 80% pour le mod�
 
 Mais malheureusement même en diminuant le nombre de filtres et la taille des kernels et en augmentant le nombre des strides, le modèle restait trop lourd pour être déployé sur la carte.
 
-Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de nos attentes. Toutefois, compte tenu du nombre limité de filtres que nous avons utilisés dans les couches de convolution et la baisse de la frequence et des secondes dans l’entrée pour pouvoir déployer le modèle sur la carte, cette performance reste tout à fait satisfaisante.
+Compte tenu du nombre limité de filtres que nous avons utilisés dans les couches de convolution et la baisse de la frequence et des secondes dans l’entrée pour pouvoir déployer le modèle sur la carte, cette performance reste tout à fait satisfaisante.
 
 ### Analyse des performances pour le modèle avec toutes les classes
 
@@ -99,7 +99,7 @@ Nous sommes conscients que ces résultats ne sont pas encore à la hauteur de no
 
 On suppose que la consomation en mode active est de 62 mW
 
-On suppoose que la carte recupere les données pendant tous les 2 secondes et on les envoie au serveur pour les traiter.
+On suppoose que la carte récupère les données tous les 2 secondes.
 
 Donc la consomation moyenne par periode : L\*P/T = 62\*0.1/2.= 3.1 mW
 
