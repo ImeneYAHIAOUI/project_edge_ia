@@ -57,7 +57,7 @@ Le convertisseur analogique-numérique (ADC) est un péréphérique qui permet d
 
 ## Résultats obtenus
 
-Dans un premier temps, Nous avons utilisé seulement les premiers 10 secondes de chaque enregistrement pour l’apprentissage et le test. Cette stratégie nous faisait perdre beaucoup d’informations et nous donnait une accuracy de 44%.
+Dans un premier temps, Nous avons utilisé seulement les premières 10 secondes de chaque enregistrement pour l’apprentissage et le test. Cette stratégie nous faisait perdre beaucoup d’informations et nous donnait une accuracy de 44%.
 
 Cependant, après avoir utilisé le logiciel ffmpeg pour découper chaque audio en segments de 10 secondes et en utilisant la totalité, nous avons observé une amélioration significative de l'accuracy, qui est passée à 60%. Cette modification a permis d'inclure une quantité de données plus importante dans l'apprentissage du modèle, ce qui a contribué à améliorer ses performances.
 
