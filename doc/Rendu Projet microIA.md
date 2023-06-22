@@ -2,7 +2,7 @@
 
 ## Description du projet
 
-Notre projet vise à identifier les chants des oiseaux à partir de fichiers de test en utilisant une carte Nucleo-64 STM32L476 qui possède une faible quantité de RAM et de stockage (1 MB Flash, 128 KB SRAM) pour jouer les enregistrements et à afficher les résultats dans la console du moniteur série. Nous avons construit notre base de données en récupérant des enregistrement grâce à l’API du site Xeno-canto présentée pendant le cours pour atteindre cet objectif.
+Notre projet vise à identifier les chants des oiseaux à partir de fichiers de test en utilisant une carte Nucleo-64 STM32L476 qui possède une faible quantité de RAM et de stockage (1 MB Flash, 128 KB SRAM) pour jouer les enregistrements et afficher les résultats dans la console du moniteur série. Nous avons construit notre base de données en récupérant des enregistrement grâce à l’API du site Xeno-canto présentée pendant le cours pour atteindre cet objectif.
 
 ## Description du flux du travail
 
